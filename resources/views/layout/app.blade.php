@@ -34,7 +34,7 @@
                 <a class="mr-5 hover:text-gray-900"></a>
                 <a class="mr-5 hover:text-gray-900">Users</a>
                 <a class="mr-5 hover:text-gray-900">User Name</a>
-                <a class="mr-5 hover:text-gray-900">Add product</a>
+                <a href="#" class="mr-5 hover:text-gray-900">Add product</a>
               </nav>
               <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-blue-400 hover:text-white  rounded text-base mt-4 md:mt-0">register
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">

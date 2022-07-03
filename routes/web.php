@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ProductController::class, 'index']);
-Route::get('/product/productShow/{product}', [ProductController::class, 'show']);
+Route::get('/product/productShow/{product}', [ProductController::class, 'show'])->name('product@show');
 
 
 Route::get('/app', function () {
@@ -34,6 +34,7 @@ Route::get('/profile', function () {
     return view('user/profile');
 });
 
-Route::get('/productCreate', function () {
-    return view('product/productCreate');
-});
+Route::post('/product', [ProductController::class, 'store']);
+Route::DELETE('/product/{product}', [ProductController::class, 'destroy'])->name('product@destroy');
+
+Route::get('/product/productCreate',[ProductController::class, 'create']);
