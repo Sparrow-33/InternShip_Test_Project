@@ -20,6 +20,8 @@
 							
 						</div>
 					</div>
+
+					@if (Auth::user()->role == 'admin' )
 					<div class="flex text-sm divide-x">
 						<form action="{{route('product@destroy', $product)}}" method="POST" >
 							@csrf
@@ -35,11 +37,13 @@
 							<span>Remove</span>
 						</button>
 						</form>
-						<button type="button" class="flex items-center px-2 py-1 space-x-1">
+						<a href="{{ route('product@edit', $product)}}" class="flex items-center px-2 py-1 space-x-1">
 							<i class="fa-solid fa-pen-to-square"></i>
 							<span>edit </span>
-						</button>
+						</a>
 					</div>
+                @endif
+
 				</div>
 			</div>
 			</a>

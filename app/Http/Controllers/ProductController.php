@@ -48,6 +48,22 @@ class ProductController extends Controller
         return redirect('/');
     }
 
+    // show edit  product
+    public function edit(Product $product){
+        return view('product.productEdit', [
+            'product' => $product,
+        ]);
+    }
+
+    //edit a product
+    public function update(Request $request, Product $product){
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->save();
+        return redirect('/');
+    }
+
     //delete a product
     public function destroy(Product $product){
 
