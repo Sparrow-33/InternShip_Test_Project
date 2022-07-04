@@ -7,7 +7,8 @@
       Login To Your Account
   </div>
   <div class="mt-8">
-      <form action="/login" autoComplete="off" method="POST">
+      <form action="{{ route('user@login')}}" autoComplete="off" method="POST">
+        @csrf
           <div class="flex flex-col mb-2">
               <div class="flex relative ">
                   <span class="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
@@ -39,7 +40,7 @@
               </form>
           </div>
           <div class="flex items-center justify-center mt-6">
-              <a href="#" target="_blank" class="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 ">
+              <a href="/register" target="_blank" class="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 ">
                   <span class="ml-2">
                       You don&#x27;t have an account?
                   </span>

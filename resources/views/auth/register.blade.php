@@ -14,7 +14,7 @@
                   
                   <input type="name" name="name" id="sign-in-email" class=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" placeholder="name"/>
                   @error('name')
-                  <p class="text-medium text-red-500 mt-2"> {{$message}}</p>
+                  <p class="inline text-medium text-red-500 mt-2"> {{$message}}</p>
               @enderror
                   </div>
               </div>

@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="mt-6">
-            <form method="POST" action="{{route('product@update')}}"  enctype="multipart/form-data">
+            <form method="POST" action="{{route('product@update', $product)}}"  enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
             <div class="w-full space-y-6">

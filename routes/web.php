@@ -26,47 +26,49 @@ Route::get('/register', function () {
     return view('auth/register');
 });
 
-Route::get('/login', function () {
+//show login form
+Route::get('/login/show', function () {
     return view('auth/login');
 });
 
-Route::POST('/logout',  [UserController::class, 'logout'])->name('user@logout');
-
-Route::DELETE('/user/{user}', [UserController::class, 'destroy'])->name('user@destroy');
-
-
-Route::get('/profile', function () {
-    return view('user/profile');
-});
-
-//show login form
-Route::get('/login', function () {
-    return view('login');
-});
-
 //login
-Route::post('/login', 'UserController@login');
-//display all u
-Route::get('/users/displayUsers', [UserController::class, 'index']);
+Route::post('/login', [UserController::class, 'login'])->name('user@login');
 
 //create user
 Route::post('/register', [UserController::class, 'store'])->name('register@store');
 
+Route::POST('/logout',  [UserController::class, 'logout'])->name('user@logout');
+
+
+Route::get('/user/{user}/userDestroy', [UserController::class, 'destroy'])->name('user@destroy');
+
+Route::get('/user/{user}/profile', [UserController::class, 'showProfile'])->name('user@showProfile');
+
+Route::get('/user/displayUsers', [UserController::class, 'index'])->name('users@index');
+
+Route::get('/user/showAddUser', [UserController::class, 'showAddUser'])->name('users@showAddUser');
+
+
+Route::POST('/user/addUser', [UserController::class, 'addUser'])->name('users@addUser');
+
+
+//update user
+Route::post('/user/{user}/update', [UserController::class, 'update'])->name('user@update');
+
 
 Route::get('/', [ProductController::class, 'index']);
 
-Route::get('/product/productShow/{product}', [ProductController::class, 'show'])->name('product@show');
+Route::get('/productShow/{product}', [ProductController::class, 'show'])->name('product@show');
 
-Route::post('/product', [ProductController::class, 'store']);
-
-Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product@edit');
+Route::post('/product', [ProductController::class, 'store'])->name('product@store');
 
 Route::put('/product/{product}/update', [ProductController::class, 'update'])->name('product@update');
 
-Route::DELETE('/product/{product}', [ProductController::class, 'destroy'])->name('product@destroy');
+Route::DELETE('/product/productDestroy/{product}', [ProductController::class, 'destroy'])->name('product@destroy');
 
-Route::get('/product/productCreate', [ProductController::class, 'create']);
+Route::get('/product/productCreate', [ProductController::class, 'create'])->name('product@create');
 
+Route::get('/product/edit/{product}', [ProductController::class, 'edit'])->name('product@edit');
 
 
 

@@ -26,14 +26,11 @@ class UserController extends Controller
         auth()->login($user);
         return redirect('/');
 
-        
+    }
 
-        // $user = new User();
-        // $user->name = $request->name;
-        // $user->email = $request->email;
-        // $user->password = $request->password;
-        // $user->save();
-        // return redirect('/');
+    //show login form
+    public function showLogin(){
+        return view('auth/login');
     }
 
     //login
@@ -62,16 +59,52 @@ class UserController extends Controller
 
     //update user
     public function update(Request $request, User $user){
+
+        // dd($request->email);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
-        return redirect('/');
+        return redirect('user/displayUsers');
+    }
+
+
+   //show add user
+    public function showAddUser(){
+        return view('user/addUser');
+    }
+
+
+    //add user
+    public function addUser(Request $request){
+
+        $formFields = $request->validate(
+           [
+               'name' => 'required|min:3|max:15',
+               'email' => 'required|email|unique:users',
+               'password' => 'required|min:6|max:255|confirmed',
+           ]);
+
+       //hash
+       $formFields['password'] = bcrypt($formFields['password']);
+
+       $user = User::create($formFields);
+
+       
+       return redirect('/user/displayUsers');
+
+   }
+
+    //show user profile
+    public function showProfile(User $user){
+        return view('user/profile', [
+            'user' => $user,
+        ]);
     }
 
     //delete a user
     public function destroy(User $user){
         $user->delete();
-        return redirect('/');
+        return redirect('/user/displayUsers');
     }
 
     //logout
