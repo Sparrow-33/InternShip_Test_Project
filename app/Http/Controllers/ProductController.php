@@ -57,10 +57,24 @@ class ProductController extends Controller
 
     //edit a product
     public function update(Request $request, Product $product){
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->description = $request->description;
-        $product->save();
+
+      $data = $request->only(["name", "description", "price"]);
+       if($request->hasFile('image')){
+            $file = $request->image;
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . "." . $ext;
+            $file->move('storage/images/', $filename);
+            $img = "storage/images/" . $filename;
+            $product->image = $img;
+
+            $data['image'] = $img;
+        }
+
+        // $product->name = $request->name;
+        // $product->price = $request->price;
+        // $product->description = $request->description;
+        // $product->save();
+        $product->update($data);
         return redirect('/');
     }
 
